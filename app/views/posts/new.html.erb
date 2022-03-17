@@ -1,20 +1,27 @@
 <h1>New Post</h1>
-
-<%= form_with model: @post do |form| %>
-  <p>
-    <%= form.label "title" %>
-    <%= form.text_field "title" %>
-  </p>
-  <p>
-    <%= form.label "description" %>
-    <%= form.text_field "description" %>
-  </p>
-  <p>
-    <%= form.label "posted_on" %>
-    <%= form.date_field "posted_on" %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-  <%= form.hidden_field "place_id" %>
+<% if @current_user %>
+  <%= form_with model: @post do |form| %>
+    <p>
+      <%= form.label "title" %>
+      <%= form.text_field "title" %>
+    </p>
+    <p>
+      <%= form.label "description" %>
+      <%= form.text_field "description" %>
+    </p>
+    <p>
+      <%= form.label "posted_on" %>
+      <%= form.date_field "posted_on" %>
+    </p>
+    <p>
+      <%= form.label "image_attachment" %>
+      <%= form.file_field "image_attachment", accept: "image/png,image/jpeg,image/jpg"%>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+    <%= form.hidden_field "place_id" %>
+  <% end %>
+<% else %>
+  <h3>User must be logged in to post</h3>
 <% end %>
